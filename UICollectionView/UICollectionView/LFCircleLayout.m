@@ -23,13 +23,15 @@
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     NSInteger index = indexPath.item;
-    CGFloat radius = 180;
-    CGFloat circleX = self.collectionView.frame.size.width * 0.5;
-    CGFloat circleY = self.collectionView.frame.size.height * 0.5;
+    CGFloat radius = 130;
+    CGFloat circleX = [UIScreen mainScreen].bounds.size.width * 0.5;
+    CGFloat circleY = [UIScreen mainScreen].bounds.size.height * 0.5;
     NSInteger count = [self.collectionView numberOfItemsInSection:0];
     CGFloat singleItemAngle = 360.0 / count;
-    
-    attrs.center = CGPointMake(circleX + radius * cosf(kCalcAngle(singleItemAngle * index)), circleY - radius * sinf(kCalcAngle(singleItemAngle * index)));
+    CGFloat x = radius * cosf(kCalcAngle(singleItemAngle * index));
+    CGFloat y = radius * sinf(kCalcAngle(singleItemAngle * index));
+    attrs.size = CGSizeMake(90, 130);
+    attrs.center = CGPointMake(circleX  + x, circleY  - y);
     return attrs;
 }
 @end

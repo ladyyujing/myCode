@@ -4,7 +4,7 @@
 //
 //  Created by mac on 16/3/14.
 //  Copyright © 2016年 movga. All rights reserved.
-//
+//888
 
 #import "ViewController.h"
 #import "MyCollectionViewCell.h"
@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //初始化layout
-    //UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     LFCircleLayout *layout = [[LFCircleLayout alloc] init];
 //    [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
 //    layout.headerReferenceSize = CGSizeMake(0, 20);
@@ -30,7 +30,7 @@
     
     mainCollectionView  = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     //CGRect frame = self.view.bounds;
-    NSLog(@"centerX:%ldcenterY:%ld",(long)mainCollectionView.center.x,(long)mainCollectionView.center.y);
+    NSLog(@"centerX:%fcenterY:%f",mainCollectionView.center.x,mainCollectionView.center.y);
     [self.view addSubview:mainCollectionView];
     mainCollectionView.backgroundColor = [UIColor clearColor];
     [mainCollectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:@"cellId"];
@@ -39,6 +39,11 @@
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
     //cosf(30); M_PI
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    view.backgroundColor = [UIColor yellowColor];
+    view.center = self.view.center;
+    [self.view addSubview:view];
+    
 }
 
 #pragma mark collectionView delegate
@@ -53,14 +58,16 @@
 
 
 //设置每个item的尺寸
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(90, 130);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake(90, 130);
+//}
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+    NSLog(@"cell,center:%f, %f ",cell.center.x,cell.center.y);
+    
     cell.botlabel.text = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)indexPath.row];
-    cell.backgroundColor = [UIColor yellowColor];
+    
     return cell;
 }
 
