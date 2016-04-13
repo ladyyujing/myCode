@@ -23,6 +23,7 @@
     _botlabel.textColor = [UIColor blueColor];
     _botlabel.font =  [UIFont systemFontOfSize:15];
     _botlabel.backgroundColor = [UIColor purpleColor];
+    self.contentView.backgroundColor = [UIColor yellowColor];
     
     [self.contentView addSubview:_botlabel];
     return self;
